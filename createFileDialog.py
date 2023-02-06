@@ -4,11 +4,10 @@ from tkinter.filedialog import *
 g = Tk()
 
 
-
 def file_dialog():
     file_opened = askopenfile()
-    file_readed = file_opened.name
-    file = open(file_readed)
+    file_read = file_opened.name
+    file = open(file_read)
     my_label = Label(text=file_opened.name)
     my_label.pack()
     my_string_var = StringVar()
