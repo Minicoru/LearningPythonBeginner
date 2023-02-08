@@ -3,8 +3,29 @@ from tkinter import *
 root = Tk()
 root.title('Calculator')
 
+operator = ''
+txt_input = StringVar()
 
 def calculator():
+
+
+    def btn(numbers):
+        global operator
+        operator = operator + str(numbers)
+        txt_input.set(operator)
+
+    def clear():
+        global operator
+        operator = ''
+        txt_input.set('')
+        display.insert(0, 'Start calculating...')
+
+    def equal():
+        global operator
+        sumup = float(eval(operator))
+        txt_input.set(str(sumup))
+        operator = ''
+
     # ====================================
     display = Entry(
         root,
@@ -12,7 +33,8 @@ def calculator():
         fg='white',
         bg='black',
         justify=RIGHT,
-        bd=10
+        bd=10,
+        textvariable=txt_input
     )
     display.grid(columnspan=4)
     # ====================================
@@ -22,7 +44,8 @@ def calculator():
         bd=8,
         fg='grey',
         font=('JetBrains', 30, 'bold'),
-        text='7'
+        text='7',
+        command=lambda: btn(7)
     )
     btn7.grid(row=1, column=0, columnspan=1)
     btn8 = Button(
@@ -31,7 +54,8 @@ def calculator():
         bd=8,
         fg='grey',
         font=('JetBrains', 30, 'bold'),
-        text='8'
+        text='8',
+        command=lambda: btn(8)
     )
     btn8.grid(row=1, column=1, columnspan=1)
     btn9 = Button(
@@ -40,7 +64,8 @@ def calculator():
         bd=8,
         fg='grey',
         font=('JetBrains', 30, 'bold'),
-        text='9'
+        text='9',
+        command=lambda: btn(9)
     )
     btn9.grid(row=1, column=2, columnspan=1)
     btnClear = Button(
@@ -50,7 +75,8 @@ def calculator():
         fg='purple',
         bg='black',
         font=('JetBrains', 30, 'bold'),
-        text='C'
+        text='C',
+        command=lambda: clear()
     )
     btnClear.grid(row=1, column=3, columnspan=1)
     # ====================================
@@ -60,7 +86,8 @@ def calculator():
         bd=8,
         fg='grey',
         font=('JetBrains', 30, 'bold'),
-        text='4'
+        text='4',
+        command=lambda: btn(4)
     )
     btn4.grid(row=2, column=0, columnspan=1)
     btn5 = Button(
@@ -69,7 +96,8 @@ def calculator():
         bd=8,
         fg='grey',
         font=('JetBrains', 30, 'bold'),
-        text='5'
+        text='5',
+        command=lambda: btn(5)
     )
     btn5.grid(row=2, column=1, columnspan=1)
     btn6 = Button(
@@ -78,7 +106,8 @@ def calculator():
         bd=8,
         fg='grey',
         font=('JetBrains', 30, 'bold'),
-        text='6'
+        text='6',
+        command=lambda: btn(6)
     )
     btn6.grid(row=2, column=2, columnspan=1)
     btnPlus = Button(
@@ -88,7 +117,8 @@ def calculator():
         fg='orange',
         bg='black',
         font=('JetBrains', 30, 'bold'),
-        text='+'
+        text='+',
+        command=lambda: btn('+')
     )
     btnPlus.grid(row=2, column=3, columnspan=1)
     # ====================================
@@ -98,7 +128,8 @@ def calculator():
         bd=8,
         fg='grey',
         font=('JetBrains', 30, 'bold'),
-        text='1'
+        text='1',
+        command=lambda: btn(1)
     )
     btn1.grid(row=3, column=0, columnspan=1)
     btn2 = Button(
@@ -107,7 +138,8 @@ def calculator():
         bd=8,
         fg='grey',
         font=('JetBrains', 30, 'bold'),
-        text='2'
+        text='2',
+        command=lambda: btn(2)
     )
     btn2.grid(row=3, column=1, columnspan=1)
     btn3 = Button(
@@ -116,7 +148,8 @@ def calculator():
         bd=8,
         fg='grey',
         font=('JetBrains', 30, 'bold'),
-        text='3'
+        text='3',
+        command=lambda: btn(3)
     )
     btn3.grid(row=3, column=2, columnspan=1)
     btnMinus = Button(
@@ -126,7 +159,8 @@ def calculator():
         fg='orange',
         bg='black',
         font=('JetBrains', 30, 'bold'),
-        text='-'
+        text='-',
+        command=lambda: btn('-')
     )
     btnMinus.grid(row=3, column=3, columnspan=1)
     # ====================================
@@ -137,7 +171,8 @@ def calculator():
         fg='orange',
         bg='black',
         font=('JetBrains', 30, 'bold'),
-        text='.'
+        text='.',
+        command=lambda: btn('.')
     )
     btnDot.grid(row=4, column=0, columnspan=1)
     btn0 = Button(
@@ -146,7 +181,8 @@ def calculator():
         bd=8,
         fg='grey',
         font=('JetBrains', 30, 'bold'),
-        text='0'
+        text='0',
+        command=lambda: btn(0)
     )
     btn0.grid(row=4, column=1, columnspan=1)
     btnDiv = Button(
@@ -156,7 +192,8 @@ def calculator():
         fg='orange',
         bg='black',
         font=('JetBrains', 30, 'bold'),
-        text='/'
+        text='/',
+        command=lambda: btn('/')
     )
     btnDiv.grid(row=4, column=2, columnspan=1)
     btnMult = Button(
@@ -166,7 +203,8 @@ def calculator():
         fg='orange',
         bg='black',
         font=('JetBrains', 30, 'bold'),
-        text='X'
+        text='X',
+        command=lambda: btn('*')
     )
     btnMult.grid(row=4, column=3, columnspan=1)
     # ====================================
@@ -177,7 +215,8 @@ def calculator():
         fg='orange',
         bg='black',
         font=('JetBrains', 30, 'bold'),
-        text='='
+        text='=',
+        command=lambda: equal()
     )
     btnEqu.grid(row=5, column=0, columnspan=2)
     btnOpenbrackets = Button(
@@ -187,7 +226,8 @@ def calculator():
         fg='orange',
         bg='black',
         font=('JetBrains', 30, 'bold'),
-        text='('
+        text='(',
+        command=lambda: btn('(')
     )
     btnOpenbrackets.grid(row=5, column=2, columnspan=1)
     btnClosebrackets = Button(
@@ -197,7 +237,8 @@ def calculator():
         fg='orange',
         bg='black',
         font=('JetBrains', 30, 'bold'),
-        text=')'
+        text=')',
+        command=lambda: btn(')')
     )
     btnClosebrackets.grid(row=5, column=3, columnspan=1)
 
